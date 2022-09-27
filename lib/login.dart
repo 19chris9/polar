@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   late StreamSubscription _onDestroy;
   late StreamSubscription<String> _onUrlChanged;
   late StreamSubscription<WebViewStateChanged> _onStateChanged;
+  String authenticationString = "";
   @override
   void dispose() {
     _onDestroy.cancel();
@@ -85,8 +86,7 @@ class _LoginPageState extends State<LoginPage> {
     return http.post(
       Uri.parse('https://polarremote.com/v2/oauth2/token'),
       headers: <String, String>{
-        'Authorization':
-            'Basic NGUxMGNkMzktNTYwYy00NTlmLTljNmEtNDM2ZTkwZDRkNzZiOjgwMzljNmE5LTdlODItNGQwMi1iZTBlLWNkMmRkNmIwMTc4Yg==',
+        'Authorization': 'Basic $authenticationString',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json;charset=UTF-8'
       },
